@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+     #map {
+        height: 500px;
+        width: 100%;
+       }
+{% endblock %}
+
+{% block content %}
+<div class="w3-row-padding">
+
+    <div class="w3-third">
+<h2  class="text-center"><b>{{object.name | upper}}</b></h2>
+        <div class="w3-card-4">
+            <img src="{{ object.site_image.url }}" alt="site_image" width="100%" height="300px">
+        </div><br/>
+        <h4><b>Description</b></h4>
+            <p>{{ object.description }}</p><br/>
+        <p><h6><b>Location</b> : {{ object.location }}</h6></p><br/>
+        <p><h6><b>Contact</b> : {{ object.telephone }} , {{ object.mobile }} </h6></p>
+
+    </div>
+    <div class="w3-twothird">
+        <h3 class="text-center">Map View</h3>
+        <div id="map"></div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+
+    <script>
+      function initMap() {
+        var uluru = {lat: {{ object.latitude }}, lng:{{ object.longitude }} };
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+            title : "{{ object.name }}",
+          position: uluru,
+          map: map
+        });
+
+        var content = '<h6><b>'+'{{ object.name }}'+'</b></h6>'+'<p>'+'{{ object.snippet }}'+'</p>';
+            var infowindow = new google.maps.InfoWindow();
+            infowindow.setContent(content);
+            google.maps.event.addListener(
+                marker,
+                'click',
+                infowindow.open(map, marker)
+            );
+
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?AIzaSyCJFR-LypbNC4Kw4fQre998p--SzWrwNMQ&callback=initMap">
+    </script>
+{% endblock %}
+
+var content = '<h6>'+'{{ object.name }}'+'</h6>';
+         var infowindow = new google.maps.InfoWindow();
+            infowindow.setContent(content);
+            google.maps.event.addListener(
+                marker,
+                'click',
+                infowindow.open(map, marker)
+            );

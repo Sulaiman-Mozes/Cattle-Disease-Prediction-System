@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1> {{ object.disease }} </h1>
+    <p> {{ object.description }} </p>
+    <h3>Causes</h3>
+    <p> {{ object.causes }} </p>
+    <h3>Symptoms</h3>
+    <p> {{ object.symptoms }} </p>
+    <h3>Treatment</h3>
+    <p> {{ object.treatment }} </p>
+    <h3>Prevention</h3>
+    <p> {{ object.prevention }} </p>
+</div>
+{% endblock %}

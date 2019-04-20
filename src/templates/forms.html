@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="w3-container">
+
+    <h4 class="w3-dark-grey" style="text-align: center; padding: 10px"> {{ title }} </h4>
+    <div class="col-sm-8 col-sm-offset-2">
+        
+        <small>
+            <form class="form-horizontal" method="post" action="" style="padding: 20px">
+                {% csrf_token %}
+
+                    {{ form | crispy }}
+
+                <div class="col-sm-offset-2">
+                    <input type="submit" value="Submit" class="col-sm-8 , w3-button w3-dark-grey"/>
+                </div>
+            </form>
+        </small>
+        </div>
+
+    </div>
+{% endblock %}

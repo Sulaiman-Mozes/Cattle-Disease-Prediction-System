@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+
+<div class="row">
+	<h4 class="w3-dark-grey" style="text-align: center; padding: 10px">{{ title  }}</h4>
+	<div class="col-sm-5 col-sm-offset-1">
+		
+		<small>
+			<form class="form-horizontal" method="post" action="" style="padding: 20px">
+				{% csrf_token %}
+
+					{{ form | crispy }}
+
+				<div class="col-sm-offset-2">
+					<input type="submit" value="Submit" class="col-sm-8 , w3-button w3-dark-grey"/>
+				</div>
+			</form>
+		</small>
+		</div>
+	<div class="col-sm-5 col-sm-offset-1"><hr>
+
+		<p>Contact us and we'll get back to you within 24 hours.</p><br/>
+
+		<ul>
+			<p><i class="fa fa-home" aria-hidden="true" style="font-size:24px;color:red;"></i></span> | Kampala, UG </p><br/>
+			<p><i class="fa fa-phone" aria-hidden="true" style="font-size:24px;color:red;"></i> | +256 776623296 </p><br/>
+			<p><i class="fa fa-envelope" aria-hidden="true" style="font-size:24px;color:red;"></i> | sula@gmail.com </p><br/>
+		</ul>
+
+	</div>
+</div>	
+</div>
+{% endblock %}

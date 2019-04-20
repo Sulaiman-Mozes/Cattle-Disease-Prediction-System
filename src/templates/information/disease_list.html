@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static%}
+{% block home %}
+    <div style="background-image:url({% static "images/366544.jpg" %}); min-height: 300px;   background-position: center;
+    background-size: cover; border: solid black; border-radius: 2px ">
+    <div class="w3-center">
+    <div class="w3-padding-64"></div>
+        <h1 class="w3-xxxlarge w3-text-white" >Protect your livestock and enhance productivity.</h1>
+    </div>
+    </div>
+    <hr/>
+<div class="container">
+    <form class="form" method="GET" action='.'>
+        <input type="search" name="q" placeholder="search.." value='{{ request.GET.q }}' >
+        <button class="btn btn-default" type='submit'>Search</button>
+    </form>
+
+<h1 class="text-center" >Beef and dairy cow diseases</h1>
+
+{% if search %}
+    <table class="w3-table w3-striped w3-bordered">
+
+<thead>
+<tr class="w3-teal">
+  <th>Disease</th>
+  <th>Type</th>
+
+{% for obj in object_list %}
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><div class="w3-padding-4"><a href='{{ obj.get_absolute_url }}'>{{ obj }}</a></div></td>
+  <td>Bacterial</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<p class="lead">No Items Found</p>
+{% endif %}
+</div>
+{% endblock %}

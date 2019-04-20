@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static%}
+{% block content %}
+<div class="w3-container">
+{% for obj in object_list %}
+
+    <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa  fa-fw w3-margin-right w3-xxlarge w3-text-teal"><img src="{{ obj.site_image.url }}" alt="Site Image" style="width:100%"></i><a href="{{ obj.get_absolute_url }}">{{ obj.name }}</a></h2>
+        <div class="w3-container">
+          <p>{{ obj.description }}</p><br>
+        </div>
+      </div>
+{% endfor %}
+</div>
+{% endblock %}

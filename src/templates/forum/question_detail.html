@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+      <h1> {{ object.title }} </h1><hr/>
+      <p>{{ object.question }}</p>
+  {{ object.answer_set.count }}
+      <h6 class="w3-text-teal"><b>Posted By : {{ object.owner }} <div class="w3-right">{{ object.timestamp|timesince}} ago</div></b> </h6>
+<br/>
+{% for comment in comments %}
+
+    <div class="panel panel-primary w3-border-white">
+        <div class="panel-heading w3-gray w3-text-white">{{ comment.owner }}
+            <div class="w3-right">
+            <small>{{ comment.timestamp }}</small></div>
+        </div>
+      <div class="panel-body">{{ comment.answer }}</div>
+    </div>
+
+
+{% endfor %}
+
+<small>
+    <h4>Your Answer</h4>
+<form method="POST" action=".">
+    {% csrf_token %}
+
+        {{ comment_form | crispy }}
+
+    <div class="col-sm-offset-2">
+        <input type="submit" value="Add Comment" class="col-sm-8 , w3-button w3-dark-grey"/>
+    </div>
+</form>
+</small>
+<!--{{ object.answer_set.all }}
+
+{% for comment in  object.answer_set.all %}
+	{{ comment.answer }}
+{% endfor %}
+-->
+  </div>
+</div>
+{% endblock %}

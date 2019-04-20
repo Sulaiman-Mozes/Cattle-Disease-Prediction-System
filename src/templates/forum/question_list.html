@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row w3-margin-left w3-margin-right w3-padding-16" style="background-color: #666666">
+<div class="w3-third">
+<h1 class="text-center w3-text-white" >Support Forum</h1>
+</div>
+    <div class="w3-twothird w3-center"><br/>
+          <form class="form" method="GET" action='.'>
+            <input type="search" name="q" placeholder="search.." value='{{ request.GET.q }}' >
+            <button class="btn btn-default" type='submit'>Search</button>
+        </form>
+    </div>
+    </div>
+
+<div class="container">
+<br/>
+<div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+{% if search %}
+{% for obj in object_list %}
+
+    <div class="w3-container">
+
+        <h5 class="w3-opacity"><b><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a></b></h5>
+        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ obj.timestamp }}
+        <div class="w3-right">{{ obj.owner }} </div>{{ obj.answer_set.all }}
+        </h6>
+        {% if obj.image %}
+            <div class="" >
+            <img src="{{ obj.image.url }}" alt="image"; height="100px"><hr/>
+            </div>
+        {% endif %}
+        <p>{{obj.question}}</p>
+        <a href="{% url 'forum:create' %}" class="w3-left btn btn-primary w3-hover-white">Ask Question</a>
+        <a href="{{ obj.get_absolute_url }}" class="w3-right btn btn-primary w3-hover-white">Comment</a>
+    </div>
+    <hr>
+{% endfor %}
+{% else %}
+<p class="lead">No Items Found</p>
+{% endif %}
+
+</div>
+</div>
+
+{% endblock %}

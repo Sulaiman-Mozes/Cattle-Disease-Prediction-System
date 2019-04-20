@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static%}
+{% block home %}
+    <div style="background-image:url({% static "images/279385.jpg" %}); min-height: 300px;   background-position: bottom;
+    background-size: cover; border: solid black; border-radius: 2px ">
+    <div class="w3-center">
+    <div class="w3-padding-64"></div>
+        <h1 class="w3-xxxlarge w3-text-white" >Protect your livestock and enhance productivity.</h1>
+    </div>
+    </div>
+    <hr/>
+<div class="container">
+{% for disease in prediction%}
+    {% if disease == "No Results Found" %}
+        <p>Sorry we couldnot diagnose your symptoms fully. Please Try Again</p>
+        <div class="w3-text-blue" style="font-family: bold">
+            {{ disease | upper }}
+        </div>
+    {% else %}
+        <p>The results Indicate that its more likely to be :</p>
+        <div class="w3-text-blue" style="font-family: bold">
+            {{ disease | upper }}
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
+
+{% endblock %}
